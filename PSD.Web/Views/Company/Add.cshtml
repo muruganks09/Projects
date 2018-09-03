@@ -1,0 +1,64 @@
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h2>Add</h2>
+
+
+
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3673B7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add Company</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="row">
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Company Name" id="inputName" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Company Website" type="password" id="inputWebSite" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Address1" id="inputAddress1" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Address2" type="text" id="inputAddress2" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="City" id="inputCity" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <select class="form-control" id="StudentGender" name="StudentGender">
+                                <option>--Select Country--</option>
+                                <option selected>India</option>
+                                <option>Singapore</option>
+                                <option>Singapore</option>
+                                <option>United States</option>
+                                <option>United States</option>
+                                <option>Australia</option>
+                                <option>Canada</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Pincode" id="inputPincode" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Comments" type="password" id="inputComments" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary button button4">Save</button>
+                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,228 @@
+@model IEnumerable<PSD.Web.Helper.CompanyDTO>
+@using PSD.Web.Models
+@using PSD.Web.Code
+
+@{
+    ViewData["Title"] = "Company Job List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="~/lib/jquery/1.11.3/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<style>
+    .table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .table th {
+            padding-top: 16px;
+            padding-bottom: 16px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 10px;
+            white-space: nowrap;
+            font-family: Verdana;
+        }
+
+        .table tr {
+            height: 20px;
+            font-size: 10px;
+            height: 5%;
+            white-space: nowrap;
+            font-family: Verdana;
+        }
+
+        .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #ddd;
+        }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnShowModal").click(function () {
+            $("#loginModal").modal('show');
+        });
+
+        $("#btnHideModal").click(function () {
+            $("#loginModal").modal('hide');
+        });
+    });
+</script>
+<p></p>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary list-panel" id="list-panel">
+            <div>
+                <button id="btnShowModal" type="button" style="float:right;height:40px;" class="btn btn-primary bg-success">
+            Add
+        </button>
+                @*<a id="btnShowModal1" asp-controller="Company" asp-action="Add" method="post" style="float:right;height:40px;" class="btn btn-primary bg-success">
+                    Add
+                </a>*@
+
+
+                @*<a asp-action="ModalAction" asp-controller="Company"  asp-route-id="1"
+           data-target="#modal-container"
+           data-toggle="modal">
+            Log in
+        </a>*@
+
+            </div>
+            <div class="panel-heading list-panel-heading">
+                <h1 class="panel-title list-panel-title">
+                    Company(s)
+                </h1>
+            </div>
+            <div class="" style="position:absolute;top:40px;">
+                <div class=""></div>
+                <table id="assets-data-table" class="table"
+                       style="width:1140px;">
+
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Website)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Address2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.City)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Country)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pincode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Clients)
+                            </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int SNo = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{ SNo++; }  @SNo
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Website)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Country)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Pincode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Clients)
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Details</a>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-primary btn-sm" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="loginModal"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:#3673B7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add Company</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="row">
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Company Name" id="inputName" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Company Website" type="password" id="inputWebSite" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Address1" id="inputAddress1" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Address2" type="text" id="inputAddress2" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="City" id="inputCity" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <select class="form-control" id="StudentGender" name="StudentGender">
+                                <option>--Select Country--</option>
+                                <option selected>India</option>
+                                <option>Singapore</option>
+                                <option>Singapore</option>
+                                <option>United States</option>
+                                <option>United States</option>
+                                <option>Australia</option>
+                                <option>Canada</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" type="text" placeholder="Pincode" id="inputPincode" />
+                        </div>
+                        <div class="col-xs-6 form-group">
+                            <input class="form-control" placeholder="Comments" type="password" id="inputComments" />
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a asp-controller="Company" asp-action="Add"> View Details </a>
+                        <button type="submit" asp-controller="Company" asp-action="Add" class="btn btn-primary button button4">Save</button>
+                        <button type="button" id="btnHideModal" class="btn btn-primary button button4">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
